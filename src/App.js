@@ -9,20 +9,21 @@ export default function App(){
   }
 
   return <div>
-    <Banner onSideBar={handleSideBar}/>
-    <Products />
+    <Banner onSideBar={handleSideBar} sideBarStatus={sideBarStatus}/>
+    <Products onSideBar={handleSideBar} />
     <Sidebar sideBarStatus={sideBarStatus}/>
   </div>
 }
 
-function Banner({onSideBar}){
+function Banner({onSideBar,sideBarStatus}){
   return <div className="banner">
-    <h3 className="logo">ProductCart</h3>
-    <p className="cartBar" onClick={onSideBar}>cart</p>
+    <h1 className="logo">ProductCart</h1>
+    <p className="cartBar" 
+       onClick={onSideBar}>{sideBarStatus?"close":"cart"}<span className="badge">0</span></p>
   </div>
 }
 
-function Products(){
+function Products({onSideBar}){
 
   return <div className="products-w">
       <div className="productTitle">
