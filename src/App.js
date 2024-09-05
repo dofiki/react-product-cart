@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App(){
+
+  const[sideBarStatus, setSideBar] = useState(false);
+
+  function handleSideBar(){
+    setSideBar(!sideBarStatus);
+  }
+
+  return <div>
+    <Banner onSideBar={handleSideBar}/>
+    <Products />
+    <Sidebar sideBarStatus={sideBarStatus}/>
+  </div>
 }
 
-export default App;
+function Banner({onSideBar}){
+  return <div className="banner">
+    <h3 className="logo">ProductCart</h3>
+    <p className="cartBar" onClick={onSideBar}>cart</p>
+  </div>
+}
+
+function Products(){
+
+  return <div className="products-w">
+      <div className="productTitle">
+        <h2>Products list:</h2>
+      </div>
+      <div className="products">
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+      </div>
+  </div>
+
+}
+
+function Sidebar({sideBarStatus}){
+  return <div className={sideBarStatus?"sideBarActive":"sideBar"}>
+    <h2>Your Products:</h2>
+  </div>
+}
