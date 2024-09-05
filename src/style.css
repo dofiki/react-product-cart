@@ -1,14 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap');
+
 *{
     margin:0;
     padding:0;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 body{
-    background-color: rgb(84, 80, 66);
+    background-color: #0F4C75;
 }
 
 .banner{
-    background-color: black;
+    background-color: #1B262C;
     color: white;
     height: 4rem;
     display: flex;
@@ -21,6 +25,7 @@ body{
 
 .logo{
     cursor: pointer;
+    font-family: "Handjet", sans-serif;
 }
 
 .logo:hover{
@@ -37,6 +42,8 @@ body{
     justify-content: center;
     align-items: center;
     position: relative;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .badge{
@@ -68,13 +75,27 @@ body{
     gap: 1rem;
 }
 
-.box{
-    display: flex;
-   
-    background-color: rgb(69, 0, 0);
+.boxImg{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
     width: 25rem;
     height: 15rem;
-    
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    background-color: #1B262C;
+    width: 25rem;
+    height: 15rem;
+    border-radius: 1rem;
+}
+
+.productMeta{
+    display: flex;
+    padding: 1rem;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .products{
@@ -93,17 +114,31 @@ body{
     display: none;
 }
 
+.addBtn{
+    padding: 1rem;
+    background-color: #3282B8;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 1rem;
+    color: white;
+}
+
+.addBtn:hover{
+
+    background-color: #235e86;
+}
+
 .sideBarActive {
     display: flex;
-    background-color: rgba(98, 91, 91, 0.6); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Blur effect */
-    position: fixed; /* Changed to fixed to keep it in place */
+    background-color: #3F72AF;
+    color: white;
+    position: fixed; 
     top: 4rem;
     right: 0;
     width: 30rem;
     height: 30rem;
     padding: 1rem;
     transform: translateX(0rem);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
-    z-index: 1000; /* Ensure it stays on top of other elements */
+    z-index: 1000; 
+    border-bottom-left-radius: 2rem;
 }
+
