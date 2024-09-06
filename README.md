@@ -1,1 +1,1 @@
-[ live demo: ](https://dofiki-product-cart.vercel.app/)
+<a href="https://dofiki-product-cart.vercel.app" target="_blank">Live Demo:</a>
