@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react";
+
 
 const products=[
 {id:1, name:"Red", price:8},
@@ -27,21 +28,26 @@ export default function App(){
     }
 
   }
-
-  useEffect(() => {
-    console.log(productList);
-  }, [productList]); 
-
   
-
   function handleSideBar(){
     setSideBar(!sideBarStatus);
+  }
+
+  function handleRemove(id){
+    setProductList(productList.filter((product) => product.id !== id))
+  }
+
+  //this is what buy btn does for right now
+  function handleClear(){
+    setSideBar(false);
+    setProductList([]);
   }
 
   return <div>
     <Banner onSideBar={handleSideBar} sideBarStatus={sideBarStatus} productList={productList}/>
     <Products onSideBar={handleSideBar} onProduct={handleProductList}/>
-    <Sidebar sideBarStatus={sideBarStatus} />
+    <Sidebar sideBarStatus={sideBarStatus} productList={productList} 
+             onRemove={handleRemove} onClear={handleClear}/>
   </div>
 }
 
@@ -49,7 +55,8 @@ function Banner({onSideBar,sideBarStatus,productList}){
   return <div className="banner">
     <h1 className="logo">ProductCart</h1>
     <p className="cartBar" 
-       onClick={onSideBar}>{sideBarStatus?"close":"cart"}<span className="badge">{productList.length}</span></p>
+       onClick={onSideBar}>{sideBarStatus?"close":"cart"}
+       {productList.length===0?"":<span className="badge">{productList.length}</span>}</p>
   </div>
 }
 
@@ -74,10 +81,33 @@ function Products({onProduct}){
 
 }
 
-function Sidebar({sideBarStatus}){
-  return <div className={sideBarStatus?"sideBarActive":"sideBar"}>
-    <h2>Your Products:</h2>
-  </div>
+function Sidebar({sideBarStatus, productList, onRemove, onClear}){
+
+function totalAmount(){
+   return productList.reduce((total, product) => total + product.price, 0);
+}
+
+  return (
+    <div className={sideBarStatus ? "sideBarActive" : "sideBar"} >
+      
+      <h2>Your Products:</h2>
+      {productList.map((pro,index) => (
+        <div key={pro.id} className="sideBarItems">
+          <div className="item">
+            <p>{index+1}.</p>
+            <h3>{pro.name}</h3>
+            <p>$ {pro.price}</p>
+            <button className="delItem" onClick={()=>onRemove(pro.id)}>remove</button>
+            </div>
+        </div> 
+      ))}
+
+     {productList.length===0? <div className="empty">empty 🛒</div>: <div className="stats">
+        <h4>Total Amount: $ {totalAmount()}</h4>
+        <button className="buyBtn" onClick={()=>onClear()}>Buy</button>
+      </div>}
+    </div>
+  );
 }
 
 function Product({id,name,price,onProduct}){
