@@ -20,7 +20,6 @@ body{
     align-items: center;
     position: sticky;
     top: 0;
-    
 }
 
 .logo{
@@ -143,7 +142,22 @@ body{
     border-bottom-left-radius: 2rem;
 }
 
+@media (max-width: 500px) {
 
+    .sideBarActive {
+        width: 20rem;
+    }
+
+    .boxImg{
+        width: 20rem;
+    }
+    
+    .box{
+        width: 20rem;
+    }
+    
+    
+}
 
 .item{
     display: grid;
